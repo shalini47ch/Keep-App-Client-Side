@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { React, useState } from "react";
+import Header from "./components/header/header";
+import AddKeeper from "./components/addkeeper/addkeeper";
+import ShowKeeper from "./components/showkeeper/showkeeper";
 
 function App() {
+  //here we will create a usestate keeper list and obtain it from the backend
+  const [keeperList, setKeeperList] = useState([]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <AddKeeper keeperList={keeperList} setKeeperList={setKeeperList} />
+      <ShowKeeper keeperList={keeperList} />
     </div>
   );
 }
