@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import "./addkeeper.css";
+import axios from "axios";
 
-const AddKeeper = () => {
+const AddKeeper = ({setKeeperList}) => {
   const [keeperObj, setKeeperObj] = useState({
     title: "",
     description: "",
@@ -17,7 +18,11 @@ const AddKeeper = () => {
   //create a helper function called as clickme for the button
   const ClickMe = () => {
     if (keeperObj.title) {
-      alert("Button clicked successfully");
+      // alert("Button clicked successfully");
+      //here we will need the axios to fetch the data from the backend
+      axios
+        .post("http://localhost:8000/api/addNewKeeper", keeperObj)
+        .then((res) => setKeeperList(res.data));
     }
   };
 
